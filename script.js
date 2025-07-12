@@ -1,5 +1,6 @@
 console.log("connected");
 
+// loadCategory function start------------------------------------------------
 const loadCategory = async () => {
   const response = await fetch(
     "https://openapi.programming-hero.com/api/news/categories"
@@ -25,7 +26,9 @@ const loadCategory = async () => {
     categoryBarContainer.append(div);
   });
 };
+// -------------------------------------------------------------------------
 
+// loadnews function start -----------------------------------------------------
 const loadNews = async (catId) => {
   console.log(catId);
   const response = await fetch(
@@ -91,10 +94,22 @@ const loadNews = async (catId) => {
             </div>
 
         </div>
-
-    // `;
+             `;
     newsContainer.append(div);
   });
+};
+// -------------------------------------------------------------------------
+
+// handleSearch function start------------------------------------
+const handleSearch = () => {
+  const inputValue = document.getElementById("search-box").value;
+  console.log(inputValue);
+
+  if (inputValue) {
+    loadNews(inputValue);
+  } else {
+    alert("please give correct category id");
+  }
 };
 
 // load function invocation
