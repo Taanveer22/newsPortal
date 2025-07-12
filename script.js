@@ -30,6 +30,7 @@ const loadCategory = async () => {
 
 // loadnews function start -----------------------------------------------------
 const loadNews = async (catId) => {
+  //   document.getElementById("loading-spiner").style.display = "block";
   console.log(catId);
   const response = await fetch(
     `https://openapi.programming-hero.com/api/news/category/${catId}`
@@ -45,9 +46,17 @@ const loadNews = async (catId) => {
   //   clear feed after first loading
   newsContainer.innerHTML = "";
 
+  //   spinner validation checking
+  if (allData.length > 0) {
+    document.getElementById("loading-spiner").style.display = "none";
+  } else {
+    document.getElementById("loading-spiner").style.display = "block";
+  }
+
   //   loop through every array data
   allData.forEach((item) => {
     // console.log(item);
+    // document.getElementById("loading-spiner").style.display = "none";
     const div = document.createElement("div");
     div.classList.add("single-news");
     div.innerHTML = `
@@ -89,7 +98,9 @@ const loadNews = async (catId) => {
                     <p>${item.total_view}</p>
                 </div>
                 <div class="details-btn-container">
-                    <button class="details-btn">Details</button>
+                    <button onclick="logTitle('${
+                      item.title
+                    }')" class="details-btn">Details</button>
                 </div>
             </div>
 
@@ -110,6 +121,12 @@ const handleSearch = () => {
   } else {
     alert("please give correct category id");
   }
+};
+// ----------------------------------------------------------------------
+
+// logTitle function start--------------------------------------------------
+const logTitle = (param) => {
+  console.log(param);
 };
 
 // load function invocation
