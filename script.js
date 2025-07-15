@@ -21,7 +21,10 @@ const loadCategory = async () => {
     // console.log(item);
     const div = document.createElement("div");
     div.innerHTML = `
-          <button onclick = loadNews('${item.category_id}')>${item.category_name}</button>
+          <button onclick = loadNews('${item.category_id}')
+                  class = "category-btn">
+                        ${item.category_name}
+          </button>
                      `;
     categoryBarContainer.append(div);
   });
@@ -85,22 +88,24 @@ const loadNews = async (catId) => {
             <div class="news-footer">
                 <div class="author">
                     <img class="author-img" src=${item.author.img} />
-                    <div class="author-info">
+                    <div>
                         <h2>${item.author.name}</h2>
                         <p>${item.author.published_date}</p>
                     </div>
                 </div>
 
                 <div class="views">
-                    <img class="view-img"
+                    <img class="eye-img"
                         src="https://uxwing.com/wp-content/themes/uxwing/download/health-sickness-organs/view-icon.png"
                     />
                     <p>${item.total_view}</p>
                 </div>
                 <div class="details-btn-container">
-                    <button onclick="logTitle('${
-                      item.title
-                    }')" class="details-btn">Details</button>
+                    <button
+                            onclick = "logTitle('${item.title}')" 
+                            class = "details-btn">
+                    Details
+                    </button>
                 </div>
             </div>
 
